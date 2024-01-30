@@ -1,5 +1,6 @@
 package DataBaseManager;
 
+import model.BPlusTree;
 import model.Table;
 
 import java.util.ArrayList;
@@ -28,8 +29,15 @@ public class DBM {
     public void createTable(String name){
         this.tables.put(name,new Table());
     }
-    public void addColumn(){
-
+    public void addColumn(String nameColumn,String tableName){
+        this.currentTable = this.tables.get(tableName);
+        currentTable.setColumnCounts(currentTable.getColumnCounts()+1);
+        currentTable.getColumnNames().add(nameColumn);
+        currentTable.getBTrees().put(nameColumn,new BPlusTree<>(5));
+        currentTable.getHashSetIndexes().put(nameColumn,new HashSet<>());
+        for (int i = 0; i < currentTable.getRows().size(); i++) {
+            currentTable.getRows().get(i).getColumns().add(new Table.Column<>(nameColumn,null));
+        }
     }
 
     public boolean updateRow() {
