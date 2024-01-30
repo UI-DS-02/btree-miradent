@@ -1122,12 +1122,7 @@ public class BPlusTree<T> {
     }
 
     public static void main(String[] args) {
-        BPlusTree<String> b = new BPlusTree<>(3);
-        b.insert(3,"majid");
-        b.insert(9,"hossein");
-        b.insert(4,"rea");
-        b.insert(2,"hi");
-        b.insert(15,"ll");
-        System.out.println(b.search(2));
+        Double x =0.3 ;
+        System.out.println(x.getClass().getSimpleName());
     }
 }
