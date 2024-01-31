@@ -996,7 +996,9 @@ public class BPlusTree<T> {
             } else {
 
                 // Insert dictionary pair, increment numPairs, sort dictionary
+                if (this.dictionary[numPairs]==null)
                 this.dictionary[numPairs] = dp;
+                else this.dictionary[numPairs-1] = dp;
                 numPairs++;
                 Arrays.sort(this.dictionary, 0, numPairs);
 
@@ -1122,7 +1124,12 @@ public class BPlusTree<T> {
     }
 
     public static void main(String[] args) {
-        Double x =0.3 ;
-        System.out.println(x.getClass().getSimpleName());
+        BPlusTree<String> u = new BPlusTree<>(3);
+        u.insert(0,"p");
+        u.insert(1,"q");
+        u.delete(0);
+        u.insert(0,"ss");
+        System.out.println(u.search(0));
+        System.out.println(u.search(1));
     }
 }

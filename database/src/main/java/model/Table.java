@@ -50,13 +50,13 @@ public class Table {
     // hashSetIndexes created for preventing collision
     private String name;
     private ArrayList<String> columnNames = new ArrayList<>();
-    private BPlusTree<Row> dedicatedRows = new BPlusTree<>(5);
+    private BPlusTree<Integer> dedicatedRows = new BPlusTree<>(5);
     private ArrayList<Row> rows = new ArrayList<>();
     private HashMap<String, BPlusTree<Row>> BTrees = new HashMap<>();
     private HashMap<String, HashSet<Integer>> hashSetIndexes = new HashMap<>();
     private int columnCounts;
 
-    public BPlusTree<Row> getDedicatedRows() {
+    public BPlusTree<Integer> getDedicatedRows() {
         return dedicatedRows;
     }
 
