@@ -1,0 +1,80 @@
+.slider .track {
+    -fx-background-color: #FBFADA;
+    -fx-cursor: hand;
+}
+
+.slider .thumb {
+    -fx-background-color: #ADBC9F;
+    -fx-background-radius: 5px;
+    -fx-padding: 2;
+    -fx-pref-width: 10px;
+    -fx-pref-height: 10px;
+    -fx-cursor: hand;
+}
+
+.slider .thumb:hover {
+    -fx-background-color: #1976d2;
+}
+
+.slider .thumb:pressed {
+    -fx-background-color: #0d47a1;
+}
+.button {
+    -fx-font-family: 'Bell MT';
+    -fx-font-size: 18;
+    -fx-background-color: #222831;
+    -fx-color: #000000;
+    -fx-border: 0;
+    -fx-background-radius: 10px;
+    -fx-transition: 0.3s;
+}
+#like {
+    -fx-background-color: #D80032;
+}
+#unLike {
+    -fx-background-color: #B4846C;
+}
+.label {
+    -fx-font-family: 'Bell MT';
+    -fx-font-size: 18;
+    -fx-font-weight: bold;
+    -fx-color: #7D5A50;
+}
+.text-field {
+    -fx-font-family: 'Bell MT';
+    -fx-font-size: 18;
+    -fx-background-color: #FCDEC0;
+    -fx-color: #000000;
+    -fx-border: 0;
+    -fx-background-radius: 10px;
+}
+.my-alert-style {
+    -fx-background-color: #B4846C;
+    -fx-text-fill: white;
+    -fx-font-size: 16px;
+}
+.table-view {
+    -fx-background-color: #B4846C;
+    -fx-text-fill: white;
+    -fx-font-size: 16px;
+}
+
+.table-view .column-header-background {
+    -fx-background-color: #337ab7;
+}
+
+.table-view .column-header {
+    -fx-text-fill: white;
+}
+
+.table-view .table-row-cell:even {
+    -fx-background-color: #B4846C;
+}
+.table-view .table-row-cell:even {
+    -fx-background-color: #B4846C;
+}
+
+.table-view .table-row-cell:selected {
+    -fx-background-color: #FCDEC0;
+    -fx-text-fill: white;
+}

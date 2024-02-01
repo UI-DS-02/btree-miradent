@@ -9,7 +9,12 @@ import java.util.HashSet;
 import java.util.Objects;
 
 public class DBM {
-    private HashMap<String, Table> tables = new HashMap<>();
+    private final HashMap<String, Table> tables = new HashMap<>();
+
+    public HashMap<String, Table> getTables() {
+        return tables;
+    }
+
     private Table currentTable;
 
     public boolean insertRow(String tableName, ArrayList<String> values) {
@@ -33,8 +38,9 @@ public class DBM {
         this.tables.put(name, new Table(name));
     }
 
-    public void addColumn(String nameColumn, String tableName) {
+    public void addColumn(String nameColumn, String tableName, String type) {
         this.currentTable = this.tables.get(tableName);
+        currentTable.getColumnType().add(type);
         currentTable.setColumnCounts(currentTable.getColumnCounts() + 1);
         currentTable.getColumnNames().add(nameColumn);
         currentTable.getBTrees().put(nameColumn, new BPlusTree<>(5));
@@ -58,11 +64,16 @@ public class DBM {
 
     public String[][] showCompleteTable(String tableName) {
         this.currentTable = this.tables.get(tableName);
-        String[][] table = new String[this.currentTable.getRows().size()][this.currentTable.getColumnCounts()];
-        for (int i = 0; i < currentTable.getRows().size(); i++) {
-            Table.Row current = currentTable.getRows().get(i);
-            for (int j = 0; j < current.getColumns().size(); j++) {
-                table[i][j] = current.getColumns().get(j).getValue();
+        String[][] table = new String[this.currentTable.getRows().size()+1][this.currentTable.getColumnCounts()+1];
+        table[0][0] = "ID";
+        for (int j = 1; j <= currentTable.getColumnNames().size(); j++) {
+            table[0][j] = currentTable.getColumnNames().get(j-1);
+        }
+        for (int i = 1; i <= currentTable.getRows().size(); i++) {
+            Table.Row current = currentTable.getRows().get(i-1);
+            table[i][0] = String.valueOf(i-1);
+            for (int j = 1; j <= current.getColumns().size(); j++) {
+                table[i][j] = current.getColumns().get(j-1).getValue();
             }
         }
         return table;
@@ -151,7 +162,7 @@ public class DBM {
         return index;
     }
 
-    public int makeIndexForBPTree(String column, String name) {
+    private int makeIndexForBPTree(String column, String name) {
         int index = 1;
         for (int i = 0; i < name.length(); i++) {
             index += i * name.charAt(i);
@@ -161,7 +172,7 @@ public class DBM {
         return index;
     }
 
-    public boolean isDigit(String checking) {
+    private boolean isDigit(String checking) {
         boolean check = true;
         for (int i = 0; i < checking.length(); i++) {
             if (!Character.isDigit(checking.charAt(i))) {

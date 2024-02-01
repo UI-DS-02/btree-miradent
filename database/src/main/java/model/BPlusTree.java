@@ -1122,14 +1122,4 @@ public class BPlusTree<T> {
             }
         }
     }
-
-    public static void main(String[] args) {
-        BPlusTree<String> u = new BPlusTree<>(3);
-        u.insert(0,"p");
-        u.insert(1,"q");
-        u.delete(0);
-        u.insert(0,"ss");
-        System.out.println(u.search(0));
-        System.out.println(u.search(1));
-    }
 }

@@ -3,6 +3,7 @@ package model;
 import java.util.*;
 
 public class Table {
+
     public static class Column {
         private String name;
         private String value;
@@ -48,12 +49,16 @@ public class Table {
     //rows : rows
     // BTree : hashMap, cause every column has Btree for fast accessing
     // hashSetIndexes created for preventing collision
-    private String name;
-    private ArrayList<String> columnNames = new ArrayList<>();
-    private BPlusTree<Integer> dedicatedRows = new BPlusTree<>(5);
+    private final String name;
+    private final ArrayList<String> columnNames = new ArrayList<>();
+    private final BPlusTree<Integer> dedicatedRows = new BPlusTree<>(5);
     private ArrayList<Row> rows = new ArrayList<>();
     private HashMap<String, BPlusTree<Row>> BTrees = new HashMap<>();
-    private HashMap<String, HashSet<Integer>> hashSetIndexes = new HashMap<>();
+    private final HashMap<String, HashSet<Integer>> hashSetIndexes = new HashMap<>();
+    private final ArrayList<String> columnType = new ArrayList<>();
+    public ArrayList<String> getColumnType() {
+        return columnType;
+    }
     private int columnCounts;
 
     public BPlusTree<Integer> getDedicatedRows() {
@@ -90,10 +95,6 @@ public class Table {
 
     public void setColumnCounts(int columnCounts) {
         this.columnCounts = columnCounts;
-    }
-
-    public void setColumnNames(ArrayList<String> columnNames) {
-        this.columnNames = columnNames;
     }
 
     public void setRows(ArrayList<Row> rows) {
